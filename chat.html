@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #chatBox {height:300px; overflow-y:auto; border:1px solid #ccc; padding:10px;}
+    #chatInput {width:80%;}
+  </style>
+</head>
+<body>
+  <header><h1>Chat with Seller</h1></header>
+  <main>
+    <div id="chatBox"></div>
+    <input type="text" id="chatInput" placeholder="Type a message">
+    <button onclick="sendMsg()">Send</button>
+  </main>
+
+  <script>
+    let chats = JSON.parse(localStorage.getItem('chats')) || [];
+    const chatBox = document.getElementById('chatBox');
+    function renderChat() {
+      chatBox.innerHTML = chats.map(c => <p><b>${c.user}:</b> ${c.text}</p>).join('');
+    }
+    renderChat();
+    function sendMsg() {
+      const input = document.getElementById('chatInput');
+      if (input.value.trim() === '') return;
+      chats.push({ user: 'You', text: input.value });
+      localStorage.setItem('chats', JSON.stringify(chats));
+      input.value = '';
+      renderChat();
+    }
+  </script>
+</body>
+</html>

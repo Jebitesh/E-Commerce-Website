@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Product</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>Upload a Product</h1></header>
+  <main>
+    <form id="uploadForm">
+      <input type="text" id="pname" placeholder="Product Name" required><br>
+      <input type="number" id="pprice" placeholder="Price" required><br>
+      <input type="text" id="pimg" placeholder="Image URL"><br>
+      <textarea id="pdesc" placeholder="Description"></textarea><br>
+      <button type="submit">Upload</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', e => {
+      e.preventDefault();
+      let products = JSON.parse(localStorage.getItem('products')) || [];
+      products.push({
+        id: Date.now(),
+        name: pname.value,
+        price: pprice.value,
+        desc: pdesc.value,
+        img: pimg.value || "https://via.placeholder.com/150"
+      });
+      localStorage.setItem('products', JSON.stringify(products));
+      alert("Product uploaded!");
+      location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

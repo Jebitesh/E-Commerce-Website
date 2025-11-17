@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>Login</h1></header>
+  <main>
+    <input id="email" type="email" placeholder="Email"><br>
+    <input id="password" type="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+  </main>
+
+  <script>
+    function login() {
+      localStorage.setItem('user', document.getElementById('email').value);
+      alert('Login successful!');
+      location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
